@@ -2,17 +2,19 @@
 
 include 'vendor/autoload.php';
 
-use Classes\Config\Usuario as UsuarioConfig;
-use Classes\Categoria;
+use Dompdf\Dompdf;
 
-//$us1 = new Classes\Usuario();
-//$us2 = new Classes\Config\Usuario();
-
-$us2 = new UsuarioConfig();
-
-$c1 = new Categoria();
+// instantiate and use the dompdf class
+$dompdf = new Dompdf();
 
 
+$html = '';
 
-//var_dump($us1);
-var_dump($us2);
+for ($n = 0; $n < 10; $n++) {
+    $html .= 'mean down <br>';
+}
+$dompdf->loadHtml('<h1>hello world</h1>'. $html);
+
+$dompdf->render();
+
+$dompdf->stream();
